@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
-import backgroundImage from '../../../assets/images/background.jpg';
+import backgroundImage from '../../assets/images/background.jpg';
 
-export const MainTemplate = styled.div`
+export const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
