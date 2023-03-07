@@ -33,3 +33,5 @@ const Form = () => {
     </StyledForm>
   );
 };
+
+export default Form;
