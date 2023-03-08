@@ -5,6 +5,8 @@ import FilesUpload from '../../Molecules/FilesUpload/FilesUpload';
 import Inputfield from '../../Molecules/InputField/InputField';
 import TextareaField from '../../Molecules/TextAreaField/TextAreaField';
 import { StyledForm, Wrapper } from './Form.styles';
+import FileList from '../../Atoms/FileList/FileList';
+import ListElement from '../../Molecules/ListElement/ListElement';
 
 const Form = () => {
   const formInitialState = {
@@ -13,9 +15,7 @@ const Form = () => {
   };
 
   const [formValues, setFormValues] = useState(formInitialState);
-  const { handleAddFile, files } = useFiles();
-
-  console.log(files);
+  const { handleAddFile, files, handleDeleteFile } = useFiles();
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const fieldValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
@@ -48,6 +48,17 @@ const Form = () => {
       />
       <Wrapper>
         <FilesUpload handleAddFile={handleAddFile} />
+        <FileList>
+          {files.map((file: { name: string; size: number }) => (
+            <ListElement
+              key={file.name}
+              name={file.name}
+              size={+(file.size * 0.000001).toFixed(2)}
+              fileType={file.name.split('.').pop()}
+              onClick={handleDeleteFile}
+            />
+          ))}
+        </FileList>
       </Wrapper>
     </StyledForm>
   );
