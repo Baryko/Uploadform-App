@@ -1,5 +1,6 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
+import useFiles from '../../../hooks/useFiles/useFiles';
 import FilesUpload from '../../Molecules/FilesUpload/FilesUpload';
 import Inputfield from '../../Molecules/InputField/InputField';
 import TextareaField from '../../Molecules/TextAreaField/TextAreaField';
@@ -12,6 +13,9 @@ const Form = () => {
   };
 
   const [formValues, setFormValues] = useState(formInitialState);
+  const { handleAddFile, files } = useFiles();
+
+  console.log(files);
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const fieldValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
@@ -43,7 +47,7 @@ const Form = () => {
         value={formValues.message}
       />
       <Wrapper>
-        <FilesUpload />
+        <FilesUpload handleAddFile={handleAddFile} />
       </Wrapper>
     </StyledForm>
   );
