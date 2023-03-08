@@ -3,28 +3,32 @@ import styled from 'styled-components';
 import Input from '../../Atoms/Input/Input';
 import Label from '../../Atoms/Label/Label';
 
-export const StyledForm = styled.form`
-  grid-row: 3/ 4;
-  grid-column: 2 / 3;
-  width: 400px;
-  height: 700px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgba(243, 241, 241, 0.932);
-  overflow: hidden;
+export const UploadField = styled.div`
+  border: 0px dashed black;
+  background-color: #846d9c36;
+  margin-bottom: 0px;
   position: relative;
+  border-radius: 15px;
   @media screen and (min-width: 1280px) {
-    grid-row: 2/ 2;
-    grid-column: 2/3;
-    height: 600px;
+    height: 75px;
   }
   @media screen and (min-width: 1920px) {
-    grid-row: 2/ 2;
-    grid-column: 2/3;
-    width: 400px;
-    height: 750px;
+    height: 120px;
+  }
+  &.dragover {
+    opacity: 0.6;
+  }
+  SVG {
+    position: absolute;
+    top: 40px;
+    @media screen and (min-width: 1280px) {
+      font-size: 18px;
+      top: 30px;
+    }
+    @media screen and (min-width: 1920px) {
+      font-size: 20px;
+      top: 40px;
+    }
   }
 `;
 

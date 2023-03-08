@@ -1,8 +1,9 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
+import FilesUpload from '../../Molecules/FilesUpload/FilesUpload';
 import Inputfield from '../../Molecules/InputField/InputField';
 import TextareaField from '../../Molecules/TextAreaField/TextAreaField';
-import { StyledForm } from './Form.styles';
+import { StyledForm, Wrapper } from './Form.styles';
 
 const Form = () => {
   const formInitialState = {
@@ -41,6 +42,9 @@ const Form = () => {
         handleValueChange={handleValueChange}
         value={formValues.message}
       />
+      <Wrapper>
+        <FilesUpload />
+      </Wrapper>
     </StyledForm>
   );
 };
