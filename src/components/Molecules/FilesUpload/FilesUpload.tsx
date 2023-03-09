@@ -8,7 +8,7 @@ import { UploadField } from './FilesUpload.styles';
 import useDragAndDrop from '../../../hooks/useDragAndDrop/useDragAndDrop';
 import { Props } from './FilesUpload.types';
 
-const FilesUpload: React.FC<Props> = ({ handleAddFile }) => {
+const FilesUpload: React.FC<Props> = ({ handleAddFile, handleClearInput }) => {
   const uploadRef = useRef<HTMLDivElement>(null);
   const { onDragEnter, onDragLeave, onDragOver, onDrop } = useDragAndDrop(uploadRef);
 
@@ -31,6 +31,7 @@ const FilesUpload: React.FC<Props> = ({ handleAddFile }) => {
         multiple
         accept=".JPEG,.JPG,.PNG,.MP4"
         onChange={handleAddFile}
+        onClick={handleClearInput}
       />
     </UploadField>
   );

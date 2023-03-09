@@ -26,6 +26,10 @@ const Form = () => {
     }));
   };
 
+  const handleClearInput = (e: React.MouseEvent<HTMLInputElement>): void => {
+    e.currentTarget.value = '';
+  };
+
   return (
     <StyledForm>
       <Inputfield
@@ -48,7 +52,7 @@ const Form = () => {
         value={formValues.message}
       />
       <Wrapper>
-        <FilesUpload handleAddFile={handleAddFile} />
+        <FilesUpload handleAddFile={handleAddFile} handleClearInput={handleClearInput} />
         <FileList>
           {files.map((file: { name: string; size: number }) => (
             <ListElement
