@@ -7,6 +7,7 @@ import TextareaField from '../../Molecules/TextAreaField/TextAreaField';
 import { StyledForm, Wrapper } from './Form.styles';
 import FileList from '../../Atoms/FileList/FileList';
 import ListElement from '../../Molecules/ListElement/ListElement';
+import { Button } from '../../Atoms/Button/Button';
 
 const Form = () => {
   const formInitialState = {
@@ -60,6 +61,9 @@ const Form = () => {
           ))}
         </FileList>
       </Wrapper>
+      <Button type="submit" disabled>
+        Send
+      </Button>
     </StyledForm>
   );
 };

@@ -26,6 +26,23 @@ export const StyledForm = styled.form`
     width: 400px;
     height: 750px;
   }
+
+  button {
+    top: 650px;
+    left: 200px;
+    transform: translate(-50%, -50%);
+    @media screen and (min-width: 1280px) {
+      top: 565px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 13px;
+    }
+    @media screen and (min-width: 1920px) {
+      top: 710px;
+      left: 200px;
+      font-size: 18px;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
