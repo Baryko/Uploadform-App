@@ -8,4 +8,5 @@ export interface Props {
   fileType: string | undefined;
   size: number;
   onClick: (a: string) => void;
+  progressBar: ProgressBarTypes[];
 }
