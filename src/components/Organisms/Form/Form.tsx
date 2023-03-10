@@ -90,7 +90,9 @@ const Form = () => {
           </FileList>
         )}
       </Wrapper>
-      <Button type="submit">Send</Button>
+      <Button type="submit" disabled={!(formValues.title && files.length)}>
+        Send
+      </Button>
     </StyledForm>
   );
 };
