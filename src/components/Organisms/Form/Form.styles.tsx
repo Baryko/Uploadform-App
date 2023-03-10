@@ -53,8 +53,13 @@ export const Wrapper = styled.div`
   margin-bottom: 10px;
   margin-top: 5px;
   width: 330px;
-  height: 350px;
+  height: 340px;
   margin-top: 10px;
+
+  @media screen and (min-width: 1920px) {
+    height: 420px;
+  }
+
   ${Input} {
     margin-bottom: 20px;
     display: block;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   margin-top: 10px;
   position: relative;
-  height: inherit;
+  height: 600px;
   width: inherit;
   border-radius: 20px;
   display: flex;
