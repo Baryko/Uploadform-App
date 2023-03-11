@@ -9,3 +9,7 @@ export interface Props {
   size: number;
   onClick: (a: string) => void;
 }
+
+export interface Cookie {
+  isAccepted: boolean;
+}
