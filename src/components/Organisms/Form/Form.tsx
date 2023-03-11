@@ -1,6 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
 import { deleteDoc, doc } from 'firebase/firestore';
+import { useSelector } from 'react-redux';
 import useFiles from '../../../hooks/useFiles/useFiles';
 import FilesUpload from '../../Molecules/FilesUpload/FilesUpload';
 import Inputfield from '../../Molecules/InputField/InputField';
@@ -14,22 +15,34 @@ import UploadFinalizedScreen from '../../Molecules/UploadFinalizedScreen/UploadF
 import Modal from '../Modal/Modal';
 import ResetButton from '../../Atoms/ResetButton/ResetButton';
 import { db } from '../../../firebase-config';
+import { Cookie } from './Form.types';
 
 const Form = () => {
+  const { handleAddFile, files, handleDeleteFile, setFiles } = useFiles();
+
+  // Cookies
+  const isCookie = useSelector<Cookie>((state) => state.isAccepted);
+  const titleValueFromLocalStorage = localStorage.getItem('title');
+  const messageValueFromLocalStorage = localStorage.getItem('message');
+
   const formInitialState = {
-    title: '',
-    message: '',
+    title: titleValueFromLocalStorage || '',
+    message: messageValueFromLocalStorage || '',
   };
 
   const [formValues, setFormValues] = useState(formInitialState);
-  const { handleAddFile, files, handleDeleteFile, setFiles } = useFiles();
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const fieldValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
+    const fieldName = e.target.name;
     setFormValues((prevState) => ({
       ...prevState,
       [e.target.name]: fieldValue,
     }));
+
+    if (isCookie) {
+      localStorage.setItem(fieldName, fieldValue);
+    }
   };
 
   const {
@@ -61,7 +74,8 @@ const Form = () => {
     setFiles([]);
     setIsEverythingUploaded(false);
     await deleteDoc(doc(db, 'Files', `${docId}`));
-    setFormValues(formInitialState);
+    localStorage.clear();
+    setFormValues({ title: '', message: '' });
   };
 
   return (
@@ -72,7 +86,7 @@ const Form = () => {
         type="text"
         name="title"
         label="Title"
-        value={formValues.title}
+        value={titleValueFromLocalStorage || formValues.title}
         handleValueChange={handleValueChange}
       />
       <TextareaField
@@ -83,7 +97,7 @@ const Form = () => {
         cols={5}
         rows={5}
         handleValueChange={handleValueChange}
-        value={formValues.message}
+        value={messageValueFromLocalStorage || formValues.message}
       />
       <Wrapper>
         <FilesUpload handleAddFile={handleAddFile} handleClearInput={handleClearInput} />
@@ -114,7 +128,7 @@ const Form = () => {
       {isEverythingUploaded ? (
         <ResetButton handleClearForm={handleClearForm} />
       ) : (
-        <Button type="submit" disabled={!(formValues.title && files.length)}>
+        <Button type="submit" disabled={!((formValues.title || titleValueFromLocalStorage) && files.length)}>
           Send
         </Button>
       )}
