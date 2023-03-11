@@ -1,5 +1,6 @@
 /* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
+import { deleteDoc, doc } from 'firebase/firestore';
 import useFiles from '../../../hooks/useFiles/useFiles';
 import FilesUpload from '../../Molecules/FilesUpload/FilesUpload';
 import Inputfield from '../../Molecules/InputField/InputField';
@@ -11,6 +12,8 @@ import { Button } from '../../Atoms/Button/Button';
 import { useFirebase } from '../../../hooks/useFireBase/useFireBase';
 import UploadFinalizedScreen from '../../Molecules/UploadFinalizedScreen/UploadFinalizedScreen';
 import Modal from '../Modal/Modal';
+import ResetButton from '../../Atoms/ResetButton/ResetButton';
+import { db } from '../../../firebase-config';
 
 const Form = () => {
   const formInitialState = {
@@ -19,7 +22,7 @@ const Form = () => {
   };
 
   const [formValues, setFormValues] = useState(formInitialState);
-  const { handleAddFile, files, handleDeleteFile } = useFiles();
+  const { handleAddFile, files, handleDeleteFile, setFiles } = useFiles();
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const fieldValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
@@ -51,6 +54,14 @@ const Form = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     uploadFileToCloud(files, formValues);
+  };
+
+  const handleClearForm = async () => {
+    setProgressBar([]);
+    setFiles([]);
+    setIsEverythingUploaded(false);
+    await deleteDoc(doc(db, 'Files', `${docId}`));
+    setFormValues(formInitialState);
   };
 
   return (
@@ -85,7 +96,7 @@ const Form = () => {
                 key={file.name}
                 name={file.name}
                 size={+(file.size * 0.000001).toFixed(2)}
-                fileType={file.name.split('.').pop()}
+                fileType={file.name.split('git.').pop()}
                 onClick={handleDeleteFile}
                 progressBar={progressBar}
               />
@@ -100,9 +111,13 @@ const Form = () => {
         filesFromFirebase={filesFromFirebase}
         setfilesFromFirebase={setFilesFromFirebase}
       />
-      <Button type="submit" disabled={!(formValues.title && files.length)}>
-        Send
-      </Button>
+      {isEverythingUploaded ? (
+        <ResetButton handleClearForm={handleClearForm} />
+      ) : (
+        <Button type="submit" disabled={!(formValues.title && files.length)}>
+          Send
+        </Button>
+      )}
     </StyledForm>
   );
 };
