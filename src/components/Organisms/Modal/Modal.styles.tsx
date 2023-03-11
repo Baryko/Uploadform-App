@@ -23,7 +23,10 @@ export const ModalWrapper = styled(ReactModal)`
   opacity: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-top: 20px;
+
   @media screen and (min-width: 1280px) {
     width: 1100px;
     height: auto;
@@ -37,10 +40,10 @@ export const ModalWrapper = styled(ReactModal)`
     outline: none;
   }
   ${Button} {
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: static;
+    width: 90px;
+    height: 40px;
+    margin: 10px;
     @media screen and (min-width: 1280px) {
       font-size: 13px;
     }
@@ -53,12 +56,9 @@ export const ModalWrapper = styled(ReactModal)`
 export const DataWrapper = styled.div`
   display: flex;
   width: 90%;
-  height: auto;
   border-bottom: 1px solid rgba(28, 110, 164, 0.39);
-  margin-bottom: 75px;
   @media screen and (min-width: 1280px) {
     width: 95%;
-    margin-bottom: 75px;
   }
   span {
     font-size: 12px;
