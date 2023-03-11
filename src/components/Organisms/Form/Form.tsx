@@ -96,7 +96,7 @@ const Form = () => {
                 key={file.name}
                 name={file.name}
                 size={+(file.size * 0.000001).toFixed(2)}
-                fileType={file.name.split('git.').pop()}
+                fileType={file.name.split('.').pop()}
                 onClick={handleDeleteFile}
                 progressBar={progressBar}
               />
