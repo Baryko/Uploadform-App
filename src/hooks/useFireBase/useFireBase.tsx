@@ -4,6 +4,7 @@ import { collection, query, getDocs, addDoc, DocumentData } from 'firebase/fires
 import { getDownloadURL, ref, uploadBytesResumable, UploadTask } from 'firebase/storage';
 import { db, storage } from '../../firebase-config';
 import { FilesWithLink, ProgressBar, UploadedFiles, FirebaseContextInterface, FormValues } from './useFireBase.types';
+import useModal from '../useModal/useModal';
 
 const FireBaseContext = React.createContext<FirebaseContextInterface | null>(null);
 
@@ -13,6 +14,7 @@ export function FireBaseProvider({ children }: PropsWithChildren) {
   const [isEverythingUploaded, setIsEverythingUploaded] = useState<boolean>(false);
   const [progressBar, setProgressBar] = useState<ProgressBar[]>([]);
   const [docId, setDocIt] = useState<string>();
+  const { isOpen, handleOpenModal, handleCloseModal } = useModal();
 
   const getDataFromFirebase = async () => {
     setLoading(true);
@@ -22,6 +24,7 @@ export function FireBaseProvider({ children }: PropsWithChildren) {
       const fileData = fileFromDb.data();
       setFilesFromFirebase((prevState) => [...prevState, fileData]);
       setLoading(false);
+      handleOpenModal();
     });
   };
 
@@ -97,6 +100,8 @@ export function FireBaseProvider({ children }: PropsWithChildren) {
         uploadFileToCloud,
         docId,
         getDataFromFirebase,
+        handleCloseModal,
+        isOpen,
       }}
     >
       {children}

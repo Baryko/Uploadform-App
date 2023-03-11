@@ -10,6 +10,7 @@ import ListElement from '../../Molecules/ListElement/ListElement';
 import { Button } from '../../Atoms/Button/Button';
 import { useFirebase } from '../../../hooks/useFireBase/useFireBase';
 import UploadFinalizedScreen from '../../Molecules/UploadFinalizedScreen/UploadFinalizedScreen';
+import Modal from '../Modal/Modal';
 
 const Form = () => {
   const formInitialState = {
@@ -39,6 +40,8 @@ const Form = () => {
     uploadFileToCloud,
     docId,
     getDataFromFirebase,
+    isOpen,
+    handleCloseModal,
   } = useFirebase();
 
   const handleClearInput = (e: React.MouseEvent<HTMLInputElement>): void => {
@@ -90,6 +93,13 @@ const Form = () => {
           </FileList>
         )}
       </Wrapper>
+
+      <Modal
+        isOpen={isOpen}
+        handleClose={handleCloseModal}
+        filesFromFirebase={filesFromFirebase}
+        setfilesFromFirebase={setFilesFromFirebase}
+      />
       <Button type="submit" disabled={!(formValues.title && files.length)}>
         Send
       </Button>

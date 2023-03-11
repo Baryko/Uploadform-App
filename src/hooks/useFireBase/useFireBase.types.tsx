@@ -16,6 +16,8 @@ export interface FirebaseContextInterface {
   uploadFileToCloud: (files: UploadedFiles, formValues: FormValues) => Promise<void>;
   docId: string | undefined;
   getDataFromFirebase: () => Promise<void>;
+  isOpen: boolean;
+  handleCloseModal: () => void;
 }
 export interface FilesWithLink {
   name: string;
