@@ -16,11 +16,19 @@ import {
   Message,
 } from './Modal.styles';
 import { Button } from '../../Atoms/Button/Button';
+import PreviewPanel from '../PreviewPanel/PreviewPanel';
+import playButton from '../../../assets/icons/play.png';
 
 function Modal({ isOpen, handleClose, filesFromFirebase, setfilesFromFirebase }: ModalTypes) {
   const [copiedLink, setCopiedLink] = useState({
     link: '',
     copied: false,
+  });
+
+  const [isPreview, setIsPreview] = useState({
+    displayFile: false,
+    link: '',
+    fileType: '',
   });
 
   return (
@@ -32,6 +40,9 @@ function Modal({ isOpen, handleClose, filesFromFirebase, setfilesFromFirebase }:
       }}
       appElement={document.getElementById('root') || undefined}
     >
+      {isPreview.displayFile ? (
+        <PreviewPanel link={isPreview.link} setIsPreview={setIsPreview} fileType={isPreview.fileType} />
+      ) : null}
       {filesFromFirebase.map((files: DataFromFb) => (
         <DataWrapper key={Math.random()}>
           <FormValueContainer>
@@ -52,6 +63,25 @@ function Modal({ isOpen, handleClose, filesFromFirebase, setfilesFromFirebase }:
                   <span>{file.name}</span>
                 </div>
                 <div>
+                  <div
+                    onClick={() => {
+                      setIsPreview({
+                        displayFile: true,
+                        link: file.link,
+                        fileType: file.fileType,
+                      });
+                    }}
+                    aria-hidden="true"
+                  >
+                    {file.fileType === 'mp4' ? (
+                      <img src={playButton} alt="" />
+                    ) : (
+                      <>
+                        <img src={file.link} alt="" />
+                        <span>View</span>
+                      </>
+                    )}
+                  </div>
                   <span>{file.size} MB</span>
                   <span>{file.fileType}</span>
                 </div>
