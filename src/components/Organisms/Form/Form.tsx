@@ -11,6 +11,7 @@ import { Button } from '../../Atoms/Button/Button';
 import { useFirebase } from '../../../hooks/useFireBase/useFireBase';
 import UploadFinalizedScreen from '../../Molecules/UploadFinalizedScreen/UploadFinalizedScreen';
 import Modal from '../Modal/Modal';
+import ResetButton from '../../Atoms/ResetButton/ResetButton';
 
 const Form = () => {
   const formInitialState = {
@@ -85,7 +86,7 @@ const Form = () => {
                 key={file.name}
                 name={file.name}
                 size={+(file.size * 0.000001).toFixed(2)}
-                fileType={file.name.split('.').pop()}
+                fileType={file.name.split('git.').pop()}
                 onClick={handleDeleteFile}
                 progressBar={progressBar}
               />
@@ -100,9 +101,13 @@ const Form = () => {
         filesFromFirebase={filesFromFirebase}
         setfilesFromFirebase={setFilesFromFirebase}
       />
-      <Button type="submit" disabled={!(formValues.title && files.length)}>
-        Send
-      </Button>
+      {isEverythingUploaded ? (
+        <ResetButton />
+      ) : (
+        <Button type="submit" disabled={!(formValues.title && files.length)}>
+          Send
+        </Button>
+      )}
     </StyledForm>
   );
 };
