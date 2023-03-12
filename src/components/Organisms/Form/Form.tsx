@@ -15,6 +15,7 @@ import Modal from '../Modal/Modal';
 import ResetButton from '../../Atoms/ResetButton/ResetButton';
 import { db } from '../../../firebase-config';
 import useForm from '../../../hooks/useForm/useForm';
+import FilesCounter from '../../Molecules/FilesCounter/FilesCounter';
 
 const Form = () => {
   const { handleAddFile, files, handleDeleteFile, setFiles } = useFiles();
@@ -77,6 +78,7 @@ const Form = () => {
         handleValueChange={handleValueChange}
         value={messageValueFromLocalStorage || formValues.message}
       />
+      <FilesCounter files={files} filesQuantity={files.length} />
       <Wrapper>
         <FilesUpload handleAddFile={handleAddFile} handleClearInput={handleClearInput} />
         {isEverythingUploaded ? (
