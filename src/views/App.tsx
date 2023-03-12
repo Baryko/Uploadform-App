@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import React, { useState } from 'react';
 import Cookies from '../components/Organisms/Cookies/Cookies';
+import DeviceError from '../components/Organisms/DeviceError/DeviceError';
 import ErrorDisplayPanel from '../components/Organisms/ErrorDisplayPanel/ErrorDisplayPanel';
 import Form from '../components/Organisms/Form/Form';
 
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <MainTemplate>
+      <DeviceError />
       {error.isError ? <ErrorDisplayPanel /> : null}
       <Form />
       {isCookiesModalVisible ? <Cookies setIsCookiesModalVisible={setIsCookiesModalVisible} /> : null}
