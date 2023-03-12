@@ -1,7 +1,6 @@
 /* eslint-disable react/function-component-definition */
-import React, { useState } from 'react';
+import React from 'react';
 import { deleteDoc, doc } from 'firebase/firestore';
-import { useSelector } from 'react-redux';
 import useFiles from '../../../hooks/useFiles/useFiles';
 import FilesUpload from '../../Molecules/FilesUpload/FilesUpload';
 import Inputfield from '../../Molecules/InputField/InputField';
@@ -15,35 +14,18 @@ import UploadFinalizedScreen from '../../Molecules/UploadFinalizedScreen/UploadF
 import Modal from '../Modal/Modal';
 import ResetButton from '../../Atoms/ResetButton/ResetButton';
 import { db } from '../../../firebase-config';
-import { Cookie } from './Form.types';
+import useForm from '../../../hooks/useForm/useForm';
 
 const Form = () => {
   const { handleAddFile, files, handleDeleteFile, setFiles } = useFiles();
-
-  // Cookies
-  const isCookie = useSelector<Cookie>((state) => state.isAccepted);
-  const titleValueFromLocalStorage = localStorage.getItem('title');
-  const messageValueFromLocalStorage = localStorage.getItem('message');
-
-  const formInitialState = {
-    title: titleValueFromLocalStorage || '',
-    message: messageValueFromLocalStorage || '',
-  };
-
-  const [formValues, setFormValues] = useState(formInitialState);
-
-  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const fieldValue = e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1);
-    const fieldName = e.target.name;
-    setFormValues((prevState) => ({
-      ...prevState,
-      [e.target.name]: fieldValue,
-    }));
-
-    if (isCookie) {
-      localStorage.setItem(fieldName, fieldValue);
-    }
-  };
+  const {
+    formValues,
+    setFormValues,
+    handleValueChange,
+    handleClearInput,
+    titleValueFromLocalStorage,
+    messageValueFromLocalStorage,
+  } = useForm();
 
   const {
     loading,
@@ -59,10 +41,6 @@ const Form = () => {
     isOpen,
     handleCloseModal,
   } = useFirebase();
-
-  const handleClearInput = (e: React.MouseEvent<HTMLInputElement>): void => {
-    e.currentTarget.value = '';
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
