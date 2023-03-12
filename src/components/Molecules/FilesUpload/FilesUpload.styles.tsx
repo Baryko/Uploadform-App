@@ -1,8 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
-import Label from '../../Atoms/Label/Label';
-
 export const UploadField = styled.div`
   border: 0px dashed black;
   background-color: #846d9c36;
