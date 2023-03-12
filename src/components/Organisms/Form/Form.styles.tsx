@@ -15,7 +15,14 @@ export const StyledForm = styled.form`
   background-color: rgba(243, 241, 241, 0.932);
   overflow: hidden;
   position: relative;
+
   @media screen and (min-width: 1280px) {
+    margin-top: 12px;
+    grid-row: 1/ 1;
+    grid-column: 2/3;
+    height: 540px;
+  }
+  @media screen and (min-width: 1536px) {
     grid-row: 2/ 2;
     grid-column: 2/3;
     height: 600px;
@@ -31,7 +38,14 @@ export const StyledForm = styled.form`
     top: 650px;
     left: 200px;
     transform: translate(-50%, -50%);
+
     @media screen and (min-width: 1280px) {
+      top: 515px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 11px;
+    }
+    @media screen and (min-width: 1536px) {
       top: 575px;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -69,6 +83,9 @@ export const Wrapper = styled.div`
     cursor: pointer;
     /* z-index: 10; */
     @media screen and (min-width: 1280px) {
+      height: 55px;
+    }
+    @media screen and (min-width: 1536px) {
       height: 75px;
     }
     @media screen and (min-width: 1920px) {
@@ -90,8 +107,11 @@ export const Wrapper = styled.div`
     cursor: pointer;
     position: absolute;
     top: 15px;
-    @media screen and (min-width: 1280px) {
+    @media (min-width: 1280px) {
       font-size: 10px;
+    }
+    @media screen and (min-width: 1536px) {
+      font-size: 11px;
     }
     @media screen and (min-width: 1920px) {
       font-size: 12px;

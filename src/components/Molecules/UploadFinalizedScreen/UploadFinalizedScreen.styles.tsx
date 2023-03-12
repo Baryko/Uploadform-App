@@ -13,6 +13,9 @@ export const Wrapper = styled.div`
   border: 0.5px solid rgb(185, 172, 172);
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
   @media screen and (min-width: 1280px) {
+    height: 245px;
+  }
+  @media screen and (min-width: 1536px) {
     height: 290px;
   }
   @media screen and (min-width: 1920px) {

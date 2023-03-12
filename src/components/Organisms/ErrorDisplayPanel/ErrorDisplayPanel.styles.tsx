@@ -18,9 +18,16 @@ export const Wrapper = styled.div`
   text-align: center;
   @media screen and (min-width: 1280px) {
     width: 400px;
+    grid-row: 4/4;
+  }
+
+  @media screen and (min-width: 1536px) {
+    width: 400px;
+    grid-row: 5 /5;
   }
   @media screen and (min-width: 1920px) {
     width: 550px;
+    grid-row: 5 /5;
   }
   ${Button} {
     position: absolute;

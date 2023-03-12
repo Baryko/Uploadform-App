@@ -16,7 +16,12 @@ export const Wrapper = styled.div`
   position: relative;
   flex-direction: column;
   @media screen and (min-width: 1280px) {
-    width: 40%;
+    width: 45%;
+    height: 50%;
+  }
+
+  @media screen and (min-width: 1536px) {
+    width: 41%;
     height: 40%;
   }
   @media screen and (min-width: 1920px) {

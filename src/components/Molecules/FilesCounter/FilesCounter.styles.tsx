@@ -9,6 +9,9 @@ export const Wrapper = styled.div`
   font-weight: bold;
   justify-content: space-between;
   @media screen and (min-width: 1280px) {
+    font-size: 10px;
+  }
+  @media screen and (min-width: 1536px) {
     font-size: 11px;
   }
   @media screen and (min-width: 1920px) {
