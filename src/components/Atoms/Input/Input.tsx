@@ -17,6 +17,10 @@ const Input = styled.input`
     box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.3);
   }
   @media screen and (min-width: 1280px) {
+    font-size: 10px;
+  }
+
+  @media screen and (min-width: 1536px) {
     font-size: 11px;
   }
   @media screen and (min-width: 1920px) {

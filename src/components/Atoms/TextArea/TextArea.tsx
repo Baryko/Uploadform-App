@@ -20,6 +20,11 @@ const TextArea = styled.textarea`
     height: 35px;
   }
   @media screen and (min-width: 1280px) {
+    font-size: 10px;
+    height: 35px;
+  }
+
+  @media screen and (min-width: 1536px) {
     font-size: 11px;
     height: 65px;
   }

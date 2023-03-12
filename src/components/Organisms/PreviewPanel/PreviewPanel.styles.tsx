@@ -16,9 +16,14 @@ export const Wrapper = styled.div`
   z-index: 5;
   background-color: black;
   @media screen and (min-width: 1280px) {
+    width: 900px;
+    height: 500px;
+  }
+  @media screen and (min-width: 1536px) {
     width: 1200px;
     height: 600px;
   }
+
   @media screen and (min-width: 1920px) {
     width: 1200px;
     height: 680px;
@@ -41,4 +46,5 @@ export const Wrapper = styled.div`
 export const StyledImage = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: contain;
 `;
