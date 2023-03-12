@@ -32,7 +32,7 @@ export const StyledForm = styled.form`
     left: 200px;
     transform: translate(-50%, -50%);
     @media screen and (min-width: 1280px) {
-      top: 565px;
+      top: 575px;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 13px;
