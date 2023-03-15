@@ -16,7 +16,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: 'We-transfer-like-desktop-App/tsconfig.json',
+    project: 'tsconfig.json',
   },
   plugins: ['react', '@typescript-eslint', 'html', 'prettier'],
   rules: {

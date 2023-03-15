@@ -105,9 +105,12 @@ export const FormValueContainer = styled.div`
     }
     ${TitleContent} {
       width: 100%;
-      height: auto;
+      max-height: 300px;
       padding-top: 10px;
       padding-left: 7px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      overflow-y: auto;
       &::-webkit-scrollbar {
         width: 10px;
       }
